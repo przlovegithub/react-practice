@@ -1,11 +1,27 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Route from './router/';
+import FastClick from 'fastclick';
 import './utils/rem';
-import './index.css';
+import './style/base.scss';
 import registerServiceWorker from './registerServiceWorker';
 import { AppContainer } from 'react-hot-loader';
-import 'babel-polyfill';
+import VConsole from 'vconsole/dist/vconsole.min.js' //若是不引入，则不打包到app.js中
+FastClick.attach(document.body);
+// 初始化vConsole
+new VConsole({
+    defaultPlugins: ['system', 'network', 'element', 'storage'], // 可以在此设定要默认加载的面板
+    maxLogNumber: 1000,
+    // disableLogScrolling: true,
+    onReady: function() {
+        console.log('vConsole is ready!');
+    },
+    onClearLog: function() {
+        console.log('on clearLog');
+    }
+});
+
 const render = Component => {
   ReactDOM.render(
     //绑定redux、热加载

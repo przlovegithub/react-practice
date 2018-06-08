@@ -1,3 +1,4 @@
+@import '../../style/base/mixins.scss';
 button {
     width: 100%;
     border: none;
@@ -7,7 +8,33 @@ button {
 }
 
 .nav-link {
-    display: inline-block;
+    display: block;
     font-size: .3rem;
-    width: 33.33%;
+    @include wh(50%, 1rem);
+    text-decoration: none;
+    text-align: center;
+    background: #DDDDDD;
+    float: left;
+}
+
+.selected {
+    color: red;
+}
+
+.selected1 {
+    color: white;
+}
+
+.record-nav-con {
+    position: relative;
+}
+
+.nav-flag-bar {
+    position: absolute;
+    width: 50%;
+    height: .02rem;
+    background: orange;
+    left: 0;
+    top: 1rem;
+    transition: left 500ms;
 }

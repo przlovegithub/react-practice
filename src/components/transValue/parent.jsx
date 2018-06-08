@@ -1,9 +1,11 @@
+import 'babel-polyfill';
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { is, fromJS } from 'immutable'
 import Child1 from './child1'//引入组件命名首字母需要大写
 import Child2 from './child2'
 import './parent.scss'
+
 class Parent extends React.Component{
     constructor(props){
         // 初始化执行一次

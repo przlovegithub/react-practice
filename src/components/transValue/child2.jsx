@@ -1,7 +1,9 @@
+import 'babel-polyfill';
 import React from 'react'
 import { is, fromJS } from 'immutable'
 import emitter from '../../utils/eventEmitter'
 import './child2.scss'
+
 class Child2 extends React.Component {
     constructor(props) {
         super(props);

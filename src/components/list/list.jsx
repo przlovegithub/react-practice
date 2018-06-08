@@ -1,41 +1,41 @@
+import 'babel-polyfill';
 import React from 'react'
 import { is, fromJS } from 'immutable'
-// import { comments } from '../../service/api'
-// import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
-import Comments from './comments'
+
+// import { movieList } from '../../service/api'
+import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
+import MovieList from './movieList'
 import  './list.scss'
 class List extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            text:'this is List',
-            comments: [{
-                "user": {
-                    "nickname": "阿让的狐狸",
-                    "avatarUrl": "https://p1.music.126.net/Qxet_PkzB26oGWC1c8hLNw==/109951163331703486.jpg",
-                },
-                "content": "十年。再见，十年",
-            },
-                {
-                    "user": {
-                        "nickname": "彡枫雨灬白狐",
-                        "avatarUrl": "https://p1.music.126.net/Z4AUNUMgFIBEM-iMukMdHg==/109951163325307405.jpg",
-                    },
-                    "content": "十年之后，我希望我还可以看见你，与你一起玩耍",
-                },
-                {
-                    "user": {
-                        "nickname": "---Pluto--",
-                        "avatarUrl": "https://p1.music.126.net/tmuenXGJDLbQivxL5RLv1A==/18705991325421304.jpg",
-                    },
-                    "content": "话说，距离北京奥运会已经十年了。。。。",
-                }]
+            flagBarPos: '0%',
+            movieList:[]
         }
-        // this.visitCount=this.visitCount.bind(this)
-        // this.songCommonts = this.songCommonts.bind(this)
     }
-    componentWillReceiveProps(props) {
-
+    setFlagBarPos = type => {
+        let flagBarPos;
+        switch (type) {
+            case 'us_box':
+                flagBarPos = '0%';
+                break;
+            case 'coming_soon':
+                flagBarPos = '50%';
+                break;
+            default:
+                flagBarPos = '0%';
+        }
+        this.setState({ flagBarPos })
+    }
+    componentWillReceiveProps(nextProps) {
+        // 属性变化时设置头部底部标签位置
+        let currenType = this.props.location.pathname.split('/')[2];
+        let type = nextProps.location.pathname.split('/')[2];
+        console.log(currenType, type);
+        if (currenType !== type) {
+            this.setFlagBarPos(type);
+        }
     }
     shouldComponentUpdate(nextProps, nextState) {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
@@ -46,7 +46,7 @@ class List extends React.Component{
     componentWillMount() {
 
     }
-    // async visitCount() {
+    //  visitCount = async ()=> {
     //     try {
     //         const res = await visitCount(this.state.countData);
     //         this.setState({
@@ -58,46 +58,25 @@ class List extends React.Component{
 
     //     }
     // }
-    // async songCommonts() {
-    //     try {
-    //         const res = await comments();
-    //         console.log(res)
-    //         this.setState({
-    //             list: res.comments
-    //         })
-    //     } catch (error) {
 
-    //     }
-    // }
-    // songCommonts(){
-    //     comments().then((res)=>{
-    //         console.log(res)
-    //     })
-    // }
+
     render() {
         return (
            <div>
-                <div>{this.state.text}</div>
-                <button onClick={this.visitCount}>点击触发ajax</button>
-                {/* <section className="record-nav-con">
-                    <nav className="record-nav">
-                        <NavLink to={`${this.props.match.path}/passed`} className="nav-link" activeClassName="selected">已通过</NavLink>
-                        <NavLink to={`${this.props.match.path}/audited`} className="nav-link" >待审核</NavLink>
-                        <NavLink to={`${this.props.match.path}/failed`} className="nav-link" activeStyle={{ color: '#ccc', 'borderBottomColor': '#ccc' }}>未通过</NavLink>
-                    </nav>
+                <div className="record-nav-con clearfix">
+                        <NavLink to={`${this.props.match.path}/us_box`} className="nav-link" activeClassName="selected">北美排行榜</NavLink>
+                    <NavLink to={`${this.props.match.path}/coming_soon`} className="nav-link" activeClassName="selected1" isActive={()=>{}}>即将上映</NavLink>
                     <i className="nav-flag-bar" style={{ left: this.state.flagBarPos }}></i>
-                </section>
+                </div>
                 <Switch>
-                    <Route path={`${this.props.match.path}/:type(passed|audited|failed)`} component={Comments} />
-                    <Redirect from={`${this.props.match.path}`} to={`${this.props.match.path}/passed`} exact component={Comments} />
-                </Switch> */}
-                <Comments data={this.state.comments}/>
+                    <Route path={`${this.props.match.path}/:type(us_box|coming_soon)`} component={MovieList} />
+                    <Redirect from={`${this.props.match.path}`} to={`${this.props.match.path}/us_box`} exact component={MovieList} />
+                </Switch>
             </div>
         )
     }
     componentDidMount() {
         // this.visitCount();
-        // this.songCommonts()
     }
     componentDidUpdate() {
 

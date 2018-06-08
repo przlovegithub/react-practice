@@ -1,0 +1,19 @@
+ul {
+    font-size: .3rem;
+}
+
+li {
+    list-style: none;
+}
+
+.movie-list {
+    width: 48%;
+}
+
+.movie-list:nth-child(2n-1) {
+    float: left;
+}
+
+.movie-list:nth-child(2n) {
+    float: right;
+}

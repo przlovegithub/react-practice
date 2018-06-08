@@ -1,7 +1,8 @@
+import 'babel-polyfill';
 import React from 'react'
 import './helloWorld.scss'
 import { is, fromJS } from 'immutable'
-import { comments} from '../../service/getData'
+
 class HelloWorld extends React.Component{
     constructor(props){
         super(props);
@@ -9,8 +10,7 @@ class HelloWorld extends React.Component{
             text:'Hello World',
             list:[]
         }
-        // this.visitCount = this.visitCount.bind(this)
-        this.songCommonts = this.songCommonts.bind(this)
+
     }
     componentWillReceiveProps(nextProps){
 
@@ -24,30 +24,7 @@ class HelloWorld extends React.Component{
     componentWillMount(){
 
     }
-    // async visitCount() {
-    //     try {
-    //         const res = await visitCount(this.state.countData);
-    //         this.setState({
-    //             text: res.msg
-    //         })
-    //         console.log(res)
-    //     } catch (error) {
-    //         console.log("catch错误：", error);
 
-    //     }
-    // }
-    async songCommonts(){
-        console.log('commont')
-        try{
-            const res = await comments({ type: 'comments', id:'446875807'});
-            console.log(res)
-            this.setState({
-                list:res.comments
-            })
-        }catch(error){
-
-        }
-    }
     render(){
         return(
             <div>
@@ -56,8 +33,7 @@ class HelloWorld extends React.Component{
         )
     }
     componentDidMount(){
-        // this.visitCount();
-        this.songCommonts()
+
     }
     componentDidUpdate(){
 

@@ -1,5 +1,7 @@
+import 'babel-polyfill';
 import React from 'react'
 import './lifeCycle.scss'
+
 class LifeCycle extends React.Component {
     constructor(props) {
         super(props);
