@@ -16,7 +16,9 @@
          width: $width;
          height: $height;
          margin: 10px 0;
-         background: #DDDDDD;
+         //  background: #DDDDDD;
+         background: url(../../assets/images/button.png) center no-repeat;
+         background-size: 100% 1rem;
      }
  }
  
@@ -40,4 +42,8 @@
  
  p {
      font-size: .4rem;
+ }
+ 
+ img {
+     width: 100%;
  }

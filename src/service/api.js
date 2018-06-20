@@ -6,3 +6,9 @@ export const visitCount = (data) => {
 export const movieList = (type) => {
     return instance.get('/v2/movie/' + type)
 };
+export const songList = () => {
+    return instance.get('/cloudmusic/?type=song&id=446875807')
+};
+export const top250 = () => {
+    return instance.get('/v2/movie/top250')
+};

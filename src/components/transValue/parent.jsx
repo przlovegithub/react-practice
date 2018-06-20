@@ -5,11 +5,13 @@ import { is, fromJS } from 'immutable'
 import Child1 from './child1'//引入组件命名首字母需要大写
 import Child2 from './child2'
 import './parent.scss'
-
+// http://es6.ruanyifeng.com/#docs/class
 class Parent extends React.Component{
     constructor(props){
         // 初始化执行一次
-        super(props);
+        // super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。ES6要求，子类的构造函数必须执行一次super函数。
+        // 在子类的构造函数中，只有调用super之后，才可以使用this关键字，否则会报错。这是因为子类实例的构建，是基于对父类实例加工，只有super方法才能返回父类实例。
+        super(props);//http://es6.ruanyifeng.com/#docs/class-extends
         this.state = {
             text:'',
             child2parent:'',

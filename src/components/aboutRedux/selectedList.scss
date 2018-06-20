@@ -1,0 +1,44 @@
+@import '../../style/base/mixins.scss';
+@import '../../style/base/type.scss';
+.confirm {
+    display: block;
+    @include wh(100%, .8rem);
+    margin: 10px 0;
+    background: #DDDDDD;
+    text-align: center;
+}
+
+.item-list {
+    .item-single {
+        @include wh(100%, .8rem);
+        // box-sizing: border-box;
+    }
+    .item-select {
+        margin-left: .5rem;
+        position: relative;
+        float: left;
+        &::before {
+            content: '';
+            @include wh(.3rem, .3rem);
+            border-radius: 100%;
+            position: absolute;
+            top: 50%;
+            left: -.4rem;
+            transform: translateY(-50%);
+            box-sizing: border-box;
+            border: .02rem solid red;
+        }
+        &.actived::before {
+            background-color: red;
+        }
+    }
+    .item-edit {
+        float: right;
+        span {
+            display: inline-block;
+            width: .5rem;
+            text-align: center;
+            // font-size: .32rem;
+        }
+    }
+}

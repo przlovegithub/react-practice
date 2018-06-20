@@ -6,6 +6,8 @@ const parentLifeCycle = asyncComponent(() => import ('../components/lifeCycle/pa
 const helloWorld = asyncComponent(()=>import('../components/helloWorld/helloWorld'))
 const parentTransValue = asyncComponent(()=>import('../components/transValue/parent'))
 const list = asyncComponent(() => import('../components/list/list'))
+const aboutRedux = asyncComponent(() => import('../components/aboutRedux/wantedMovies'))
+const selectedList = asyncComponent(() => import('../components/aboutRedux/selectedList'))
 class RouteConfig extends React.Component{
     render(){
         return(
@@ -16,6 +18,8 @@ class RouteConfig extends React.Component{
                     <Route path='/parentTransValue/:id' component={parentTransValue} />
                     <Route path='/helloWorld' component={helloWorld} />
                     <Route path='/list' component={list} />
+                    <Route path='/aboutRedux' component={aboutRedux} />
+                    <Route path='/selectedList' component={selectedList} />
                     <Redirect to="/" />
                 </Switch>
             </HashRouter>

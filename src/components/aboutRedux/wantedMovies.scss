@@ -1,0 +1,18 @@
+.selectedList {
+    text-align: center;
+    color: black;
+    display: block;
+    padding: .5rem 0;
+    background-color: #DDDDDD;
+    li {
+        padding: .2rem 0;
+    }
+}
+
+button {
+    width: 100%;
+    border: none;
+    height: 1rem;
+    margin: 10px 0;
+    background: #DDDDDD;
+}
