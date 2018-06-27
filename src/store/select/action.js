@@ -41,3 +41,10 @@ export const clearData = () => {
         type: pro.CLEARSELECTED
     }
 }
+
+
+export const aboutSaga = () => {
+    return (dispatch) => dispatch({
+        type: pro.GET_POSTS_SAGA
+    })
+}

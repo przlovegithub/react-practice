@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import React from 'react'
 // import {NavLink} from 'react-router-dom'
 import LifeCycle from './lifeCycle'

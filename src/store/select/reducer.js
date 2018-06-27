@@ -3,13 +3,18 @@ import Immutable from 'immutable';
 // import { List, Map, toJS } from 'immutable';
 let defaultState = {
     dataList: [],
+    commingSoonList: []
 }
 
 export const proData = (state = defaultState, action) => {
     let immuDataList;
     let imuItem;
     switch (action.type) {
+
         case pro.GETMOVIE:
+            return {...state, ...action };
+
+        case pro.GET_MOVIES_SAGA:
             return {...state, ...action };
 
         case pro.TOGGLESELECT:

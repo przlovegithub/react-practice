@@ -1,16 +1,21 @@
+import 'babel-polyfill';
 import React from 'react'
+import './example.scss'
 import { is, fromJS } from 'immutable'
-import emitter from '../../utils/eventEmitter'
-import './child2.scss'
-
-class Child2 extends React.Component {
+import {  DatePicker } from "antd";
+import locale from "antd/lib/date-picker/locale/zh_CN";
+class Example extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            text: 'anti',
+            list: []
         }
+
     }
-    componentWillReceiveProps(props) {
+
+
+    componentWillReceiveProps(nextProps) {
 
     }
     shouldComponentUpdate(nextProps, nextState) {
@@ -22,14 +27,12 @@ class Child2 extends React.Component {
     componentWillMount() {
 
     }
-    child2ToChild1(message){
-        emitter.emit('changeMessage', message);
-    }
+
     render() {
         return (
-            <div style={{ 'backgroundColor': 'green' }}>
-                <button onClick={this.child2ToChild1.bind(this,1)}>Child2组件传值给Child1组件</button>
-                <button onClick={() => { this.props.child2parent('Child2组件传值给父组件')}}>Child2组件传值给parent父组件</button>
+            <div>
+                <DatePicker locale={locale} />
+                <p>{this.state.text}</p>
             </div>
         )
     }
@@ -43,4 +46,5 @@ class Child2 extends React.Component {
 
     }
 }
-export default Child2;
+
+export default Example;

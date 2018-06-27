@@ -12,3 +12,7 @@ export const songList = () => {
 export const top250 = () => {
     return instance.get('/v2/movie/top250')
 };
+
+export const commingSoon = () => {
+    return instance.get('/v2/movie/coming_soon')
+};

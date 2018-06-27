@@ -31,6 +31,9 @@
         &.actived::before {
             background-color: red;
         }
+        p {
+            margin-bottom: 0;
+        }
     }
     .item-edit {
         float: right;

@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import React from 'react'
 import './helloWorld.scss'
 import { is, fromJS } from 'immutable'

@@ -1,12 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import { is, fromJS } from "immutable"
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { getData, toggleSelectPro, editNum, aboutSaga} from '../../store/select/action';
 import './selectedList.scss'
-import AboutSaga from './aboutSaga'
-class SelectedList extends React.Component {
+class AboutSaga extends React.Component {
     static propTypes = {
         proData: PropTypes.object.isRequired,
         getData: PropTypes.func.isRequired
@@ -50,26 +48,23 @@ class SelectedList extends React.Component {
         
         return( 
             <div>
-                <Link to='./aboutRedux' className="confirm">确定</Link>
                 <ul className="item-list">
                     {
-                        this.props.proData.dataList.map((item, index) => {
+                        this.props.proData.commingSoonList.map((item, index) => {
                             return <li className="item-single clearfix" key={index}>
-                                <div className={`item-select ${item.selectStatus ? 'actived' : ''}`} onClick={()=>this.toggleSelect(index)}>
-                                {/* <div className={`item-select ${item.selectStatus ? 'actived' : ''}`} onClick={this.toggleSelect.bind(this,index)}> */}
-                                  <p>{item.title}</p>
+                                <div className={`item-select ${item.selectStatus ? 'actived' : ''}`} onClick={() => this.toggleSelect(index)}>
+                                    {/* <div className={`item-select ${item.selectStatus ? 'actived' : ''}`} onClick={this.toggleSelect.bind(this,index)}> */}
+                                    <p>{item.title}</p>
                                 </div>
                                 <div className="item-edit">
-                                    <span className="minus" onClick={this.handleEdit.bind(this,index,-1)}>-</span>
+                                    <span className="minus" onClick={this.handleEdit.bind(this, index, -1)}>-</span>
                                     <span className="selectNum">{item.selectNum}</span>
-                                    <span className="plus" onClick={this.handleEdit.bind(this,index,1)}>+</span>
+                                    <span className="plus" onClick={this.handleEdit.bind(this, index, 1)}>+</span>
                                 </div>
-                              </li>;
+                            </li>;
                         })
                     }
                 </ul>
-                <div>通过redux-saga方式获取得到的数据</div>
-                <AboutSaga/>
             </div>);
     }
 
@@ -91,4 +86,4 @@ class SelectedList extends React.Component {
 
 export default connect((state)=>({
     proData:state.proData
-}), { getData, toggleSelectPro, editNum, aboutSaga})(SelectedList);
+}), { getData, toggleSelectPro, editNum, aboutSaga})(AboutSaga);

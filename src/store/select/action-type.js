@@ -6,3 +6,8 @@ export const TOGGLESELECT = 'TOGGLESELECT';
 export const EDITMOVIE = 'EDITMOVIE';
 // 清空选择
 export const CLEARSELECTED = 'CLEARSELECTED';
+
+// 关于saga
+export const GET_POSTS_SAGA = 'GET_POSTS_SAGA';
+
+export const GET_MOVIES_SAGA = 'GET_MOVIES_SAGA';
