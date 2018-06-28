@@ -45,6 +45,13 @@ export const clearData = () => {
 
 export const aboutSaga = () => {
     return (dispatch) => dispatch({
-        type: pro.GET_POSTS_SAGA
+        type: pro.GET_POSTS_SAGA,
+    })
+}
+
+export const bookSaga = (param) => {
+    return (dispatch) => dispatch({
+        type: pro.GET_BOOK_SAGA,
+        param
     })
 }

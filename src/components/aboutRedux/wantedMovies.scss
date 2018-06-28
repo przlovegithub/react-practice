@@ -16,3 +16,20 @@ button {
     margin: 10px 0;
     background: #DDDDDD;
 }
+
+.bookList {
+    li {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: space-evenly;
+        -webkit-justify-content: space-evenly;
+        -ms-flex-pack: space-evenly;
+        justify-content: space-evenly;
+        span {
+            display: inline-block;
+            width: 3rem;
+        }
+    }
+}

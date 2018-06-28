@@ -16,3 +16,7 @@ export const top250 = () => {
 export const commingSoon = () => {
     return instance.get('/v2/movie/coming_soon')
 };
+
+export const searchBook = (bookName) => {
+    return instance.get('/v2/book/search?q=' + bookName)
+};

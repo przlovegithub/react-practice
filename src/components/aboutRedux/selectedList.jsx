@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import { is, fromJS } from "immutable"
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import { getData, toggleSelectPro, editNum, aboutSaga} from '../../store/select/action';
+import { getData, toggleSelectPro, editNum, aboutSaga, bookSaga} from '../../store/select/action';
 import './selectedList.scss'
 import AboutSaga from './aboutSaga'
 class SelectedList extends React.Component {
@@ -17,6 +17,10 @@ class SelectedList extends React.Component {
     //     this.toggleSelect = this.toggleSelect.bind(this);
     // }
 
+    state = {
+        searchData:''
+    }
+
     toggleSelect(index){
         this.props.toggleSelectPro(index);
     }
@@ -29,6 +33,7 @@ class SelectedList extends React.Component {
         this.props.editNum(index, currentNum);
     }
 
+    
     componentWillMount() {
         this.props.aboutSaga();
     }
@@ -46,8 +51,6 @@ class SelectedList extends React.Component {
     }
 
     render() {
-        console.log(this.props.proData.commingSoonList);
-        
         return( 
             <div>
                 <Link to='./aboutRedux' className="confirm">确定</Link>
@@ -91,4 +94,4 @@ class SelectedList extends React.Component {
 
 export default connect((state)=>({
     proData:state.proData
-}), { getData, toggleSelectPro, editNum, aboutSaga})(SelectedList);
+}), { getData, toggleSelectPro, editNum, aboutSaga, bookSaga})(SelectedList);

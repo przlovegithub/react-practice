@@ -11,3 +11,8 @@ export const CLEARSELECTED = 'CLEARSELECTED';
 export const GET_POSTS_SAGA = 'GET_POSTS_SAGA';
 
 export const GET_MOVIES_SAGA = 'GET_MOVIES_SAGA';
+
+
+export const GET_BOOK_SAGA = 'GET_BOOK_SAGA';
+
+export const GET_BOOKS = 'GET_BOOKS';

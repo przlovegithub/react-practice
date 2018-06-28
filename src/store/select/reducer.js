@@ -3,7 +3,8 @@ import Immutable from 'immutable';
 // import { List, Map, toJS } from 'immutable';
 let defaultState = {
     dataList: [],
-    commingSoonList: []
+    commingSoonList: [],
+    bookList: []
 }
 
 export const proData = (state = defaultState, action) => {
@@ -15,6 +16,9 @@ export const proData = (state = defaultState, action) => {
             return {...state, ...action };
 
         case pro.GET_MOVIES_SAGA:
+            return {...state, ...action };
+
+        case pro.GET_BOOKS:
             return {...state, ...action };
 
         case pro.TOGGLESELECT:
