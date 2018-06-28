@@ -66,10 +66,10 @@ class App extends React.Component {
               value: 123
             } })}}>组件之间传值(通过JS方式)</button>
             <button onClick={()=>{this.props.history.push('/list')}}>List列表(关于map之列表渲染)</button>
-            
-            <Button type="primary" className="primary-button" onClick={() => { this.props.history.push('/example')}} > <Icon type="apple" spin='true'/>关于anti-design <Icon type="arrow-right" /> </Button>
             <button onClick={()=>{this.props.history.push('/aboutRedux')}}>关于redux</button>
-        <button onClick={() => { this.props.history.push('/helloWorld')}}>hello</button>
+            <Button type="primary" className="primary-button" onClick={() => { this.props.history.push('/example')}} > <Icon type="apple" spin='true'/>关于anti-design <Icon type="arrow-right" /> </Button>
+            
+            <button onClick={() => { this.props.history.push('/helloWorld')}}>hello</button>
       </div>
     );
   }
