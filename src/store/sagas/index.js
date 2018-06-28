@@ -1,5 +1,5 @@
-import { takeEvery, takeLatest, delay } from 'redux-saga';
-import { call, put, all } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { takeEvery, takeLatest, call, put, all } from 'redux-saga/effects';
 import * as pro from '../select/action-type';
 import { commingSoon } from '../../service/api';
 import { instance } from '../../service/apiConfig';
