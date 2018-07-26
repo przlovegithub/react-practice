@@ -1,5 +1,14 @@
-P {
-    width: 100%;
-    font-size: .4rem;
-    text-align: center
+.flexbox {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    P {
+        width: 100%;
+        font-size: .4rem;
+        text-align: center
+    }
+    h3 {
+        width: 100%;
+    }
 }

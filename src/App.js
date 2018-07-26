@@ -42,7 +42,7 @@ class App extends React.Component {
             }
           }}>组件生命周期</Link>
         <Link className='link' to={{
-          pathname: '/parentTransValue/123',
+          pathname: '/parentTransValue/456',
           search: '?sort=transValue',
           query:{
             name: 'componentTransValue'
@@ -55,7 +55,7 @@ class App extends React.Component {
         {/* <button onClick={this.change}>组件之间传值(通过JS方式)</button> */}
         <button onClick={() => {
           this.props.history.push({
-            pathname: '/parentTransValue/123',
+            pathname: '/parentTransValue/456',
             search: '?sort=transValue',
             query: {
               name: 'componentTransValue'
