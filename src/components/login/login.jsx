@@ -3,7 +3,8 @@ import { is, fromJS } from "immutable";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { login } from "../../store/login/action";
-import { message, Button, Input } from "antd";
+// import { message, Button, Input } from "antd";
+import { InputItem, Button, List } from "antd-mobile";
 import "./login.scss";
 
 class Login extends React.Component {
@@ -15,21 +16,22 @@ class Login extends React.Component {
     super(props);
     this.state = { name: "", psd: "" };
   }
-  username = e => {
+  // antd的Input组件获取输入值是e.target.value,antd-mobile的InputItem必须用List组件包裹，其输入值就是value
+  username = value => {
     this.setState({
-      name: e.target.value
+      name: value
     });
   };
-  password = e => {
+  password = value => {
     this.setState({
-      psd: e.target.value
+      psd: value
     });
   };
   toLogin = () => {
     if (this.state.name === "") {
-      message.info("用户名不对");
+      // message.info("用户名不对");
     } else if (this.state.psd === "") {
-      message.info("密码不对");
+      // message.info("密码不对");
     } else {
       let data = {};
       data.username = this.state.name;
@@ -43,7 +45,7 @@ class Login extends React.Component {
     setTimeout(() => {
       if (Object.keys(this.props.loginInfo).length > 0) {
         if (this.props.loginInfo.result.code === 10000) {
-          message.info("登录成功!");
+          // message.info("登录成功!");
 
           sessionStorage.setItem(
             "userinfo",
@@ -57,7 +59,7 @@ class Login extends React.Component {
             this.props.history.push(RedirectUrl);
           }, 200);
         } else {
-          message.info("用户名或密码不对!");
+          // message.info("用户名或密码不对!");
         }
       }
     }, 200);
@@ -75,18 +77,21 @@ class Login extends React.Component {
       <div className="login">
         <h3>登录</h3>
         <div className="main">
-          <Input
-            type="text"
-            placeholder="Basic usage"
-            onChange={this.username}
-            value={this.state.name}
-          />
-          <Input
-            type="password"
-            placeholder="Basic usage"
-            onChange={this.password}
-            value={this.state.psd}
-          />
+          <List>
+            <InputItem
+              type="text"
+              placeholder="Basic usage"
+              onChange={this.username}
+              value={this.state.name}
+            />
+            <InputItem
+              type="password"
+              placeholder="Basic usage"
+              onChange={this.password}
+              value={this.state.psd}
+            />
+          </List>
+
           <Button type="primary" onClick={this.toLogin}>
             登录
           </Button>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { baseUrl } from './env'; //此处引入是判断是在开发环境还是生产环境
-import Qs from 'qs'
+import Qs from 'qs';
+import { Toast } from 'antd-mobile'
 // 全局默认配置
 // 授权认证
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
@@ -60,25 +61,24 @@ instance.interceptors.request.use(function(config) {
     // if (localStorage.AUTH_TOKEN) {
     //     config.headers.Authorization = localStorage.AUTH_TOKEN;
     // }
-    if (!localStorage.login) { //若无登录信息，去登录界面
-        // https://router.vuejs.org/zh-cn/essentials/navigation.html
-        // router.replace({ path: '/error' })
-    }
+    Toast.loading('Loading...', 0, () => {
+        console.log('Load complete !!!');
+    });
     return config;
 }, function(error) {
     // Do something with request error
-
+    Toast.hide()
     return Promise.reject(error);
 });
 
 // Add a response interceptor
 instance.interceptors.response.use(function(response) {
     // Do something with response data
-
+    Toast.hide()
     return response.data;
 }, function(error) {
     // Do something with response error
-
+    Toast.hide()
     return Promise.reject(error);
 });
 

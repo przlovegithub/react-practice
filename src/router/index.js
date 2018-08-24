@@ -24,17 +24,17 @@ class RouteConfig extends React.Component {
           <Route path="/transitionGroup" component={transitionGroup} />
           <Route path="/login" component={login} />
           <Redirect to="/" /> */}
-          {routeMap.map((item, index) => {
+          {routeMap.map((route, index) => {
             return (
               <Route
                 key={index}
-                path={item.path}
+                path={route.path}
                 exact
                 render={props =>
-                  !item.needLogin ? (
-                    <item.component {...props} />
+                  !route.needLogin ? (
+                    <route.component {...props} />
                   ) : token ? (
-                    <item.component {...props} />
+                    <route.component {...props} />
                   ) : (
                     <Redirect
                       to={{
@@ -47,7 +47,7 @@ class RouteConfig extends React.Component {
               />
             );
           })}
-          <Route component={noMatch} />
+          {/* <Route component={noMatch} /> */}
         </Switch>
       </HashRouter>
     );

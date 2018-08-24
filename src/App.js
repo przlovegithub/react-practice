@@ -3,7 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
-import { Button, Icon } from "antd";
+// import { Button, Icon } from "antd";
+import { Button, Icon } from "antd-mobile";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -99,9 +100,9 @@ class App extends React.Component {
           }}
         >
           {" "}
-          <Icon type="apple" spin="true" />
+          <Icon type="loading" />
           关于anti-design(需要登录)
-          <Icon type="arrow-right" />{" "}
+          <Icon type="right" />{" "}
         </Button>
         <button
           onClick={() => {

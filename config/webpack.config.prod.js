@@ -151,7 +151,8 @@ module.exports = {
                         options: {
                             compact: true,
                             plugins: [
-                                ["import", { libraryName: "antd", style: "css" }]
+                                // ["import", { libraryName: "antd", style: "css" }],
+                                ["import", { libraryName: "antd-mobile", style: "css" }]
                             ]
                         },
                     },
