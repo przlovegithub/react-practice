@@ -1,5 +1,5 @@
 import React from "react";
-import noMatchImg from "@/assets/images/404.jpg";
+import noMatchImg from "@/assets/images/noMatch.jpg";
 import "./noMatch.scss";
 class noMatch extends React.Component {
   render() {
