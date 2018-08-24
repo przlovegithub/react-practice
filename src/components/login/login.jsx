@@ -43,7 +43,7 @@ class Login extends React.Component {
     setTimeout(() => {
       if (Object.keys(this.props.loginInfo).length > 0) {
         if (this.props.loginInfo.result.code === 10000) {
-          message.info("登录成功");
+          message.info("登录成功!");
 
           sessionStorage.setItem(
             "userinfo",
@@ -57,7 +57,7 @@ class Login extends React.Component {
             this.props.history.push(RedirectUrl);
           }, 200);
         } else {
-          message.info("用户名或密码不对");
+          message.info("用户名或密码不对!");
         }
       }
     }, 200);
@@ -72,22 +72,25 @@ class Login extends React.Component {
   componentWillMount() {}
   render() {
     return (
-      <div>
-        <Input
-          type="text"
-          placeholder="Basic usage"
-          onChange={this.username}
-          value={this.state.name}
-        />
-        <Input
-          type="password"
-          placeholder="Basic usage"
-          onChange={this.password}
-          value={this.state.psd}
-        />
-        <Button type="primary" onClick={this.toLogin}>
-          登录
-        </Button>
+      <div className="login">
+        <h3>登录</h3>
+        <div className="main">
+          <Input
+            type="text"
+            placeholder="Basic usage"
+            onChange={this.username}
+            value={this.state.name}
+          />
+          <Input
+            type="password"
+            placeholder="Basic usage"
+            onChange={this.password}
+            value={this.state.psd}
+          />
+          <Button type="primary" onClick={this.toLogin}>
+            登录
+          </Button>
+        </div>
       </div>
     );
   }
