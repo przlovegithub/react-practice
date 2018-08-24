@@ -22,6 +22,9 @@ class App extends React.Component {
       }
     });
   };
+  componentWillMount() {
+    // console.log(sessionStorage.getItem("userinfo"));
+  }
   render() {
     return (
       <div className="App">
@@ -97,7 +100,8 @@ class App extends React.Component {
         >
           {" "}
           <Icon type="apple" spin="true" />
-          关于anti-design <Icon type="arrow-right" />{" "}
+          关于anti-design(需要登录)
+          <Icon type="arrow-right" />{" "}
         </Button>
         <button
           onClick={() => {
@@ -111,7 +115,7 @@ class App extends React.Component {
             this.props.history.push("/helloWorld");
           }}
         >
-          hello
+          hello(需要登录)
         </button>
       </div>
     );

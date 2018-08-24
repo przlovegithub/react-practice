@@ -1,50 +1,62 @@
 import React from "react";
 import { HashRouter, Route, Redirect, Switch } from "react-router-dom";
-import asyncComponent from "../utils/asyncComponent";
-import app from "../App";
-const parentLifeCycle = asyncComponent(() =>
-  import("../components/lifeCycle/parentLifeCycle")
-);
-const helloWorld = asyncComponent(() =>
-  import("../components/helloWorld/helloWorld")
-);
-const parentTransValue = asyncComponent(() =>
-  import("../components/transValue/parent")
-);
-const list = asyncComponent(() => import("../components/list/list"));
-const aboutRedux = asyncComponent(() =>
-  import("../components/aboutRedux/wantedMovies")
-);
-const selectedList = asyncComponent(() =>
-  import("../components/aboutRedux/selectedList")
-);
-const example = asyncComponent(() =>
-  import("../components/antiDesign/example")
-);
-const transitionGroup = asyncComponent(() =>
-  import("../components/transitionGroup/transitionGroup")
-);
+import { connect } from "react-redux";
+import { routeMap, noMatch } from "./routeMap";
 class RouteConfig extends React.Component {
   render() {
+    console.log(this.props.isLogin); //第一次为undefined，登录成功后值为'LOGIN_INFO'
+    let token = this.props.isLogin
+      ? this.props.isLogin
+      : sessionStorage.getItem("userinfo")
+        ? sessionStorage.getItem("userinfo")
+        : "";
     return (
       <HashRouter>
         <Switch>
-          <Route path="/" exact component={app} />
+          {/* <Route path="/" exact component={app} />
           <Route path="/parentLifeCycle" component={parentLifeCycle} />
           <Route path="/parentTransValue/:id" component={parentTransValue} />
           <Route path="/helloWorld" component={helloWorld} />
           <Route path="/list" component={list} />
           <Route path="/aboutRedux" component={aboutRedux} />
           <Route path="/selectedList" component={selectedList} />
-          <Route path="/example" component={example} />
+           <Route path="/example" component={example} /> 
           <Route path="/transitionGroup" component={transitionGroup} />
-          <Redirect to="/" />
+          <Route path="/login" component={login} />
+          <Redirect to="/" /> */}
+          {routeMap.map((item, index) => {
+            return (
+              <Route
+                key={index}
+                path={item.path}
+                exact
+                render={props =>
+                  !item.needLogin ? (
+                    <item.component {...props} />
+                  ) : token ? (
+                    <item.component {...props} />
+                  ) : (
+                    <Redirect
+                      to={{
+                        pathname: "/login",
+                        state: { from: props.location }
+                      }}
+                    />
+                  )
+                }
+              />
+            );
+          })}
+          <Route component={noMatch} />
         </Switch>
       </HashRouter>
     );
   }
 }
-export default RouteConfig;
+
+export default connect(state => ({
+  isLogin: state.loginInfo.isLogin
+}))(RouteConfig);
 
 /**
  * 1、Route组件有以下几个属性：(多数情况下component就可以满足需求，很少用到render和children)

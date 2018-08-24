@@ -1,7 +1,8 @@
 import { delay } from 'redux-saga';
 import { takeEvery, takeLatest, call, put, all } from 'redux-saga/effects';
 import * as pro from '../select/action-type';
-import { commingSoon, searchBook } from '../../service/api';
+import * as loginPro from '../login/action-types';
+import { commingSoon, searchBook, login } from '../../service/api';
 import { instance } from '../../service/apiConfig';
 // worker saga
 function* showPostsAsync(action) {
@@ -56,10 +57,31 @@ function* takeGet() {
 }
 
 
+// Login
+function* getLoginInfo(action) {
+    try {
+        const userInfo = yield call(login, action.param);
+        if (userInfo.data.result.code === 10000) {
+            yield put({ type: loginPro.LOGIN_INFO, userinfo: userInfo.data, isLogin: true })
+        } else {
+            yield put({ type: loginPro.LOGIN_INFO, userinfo: userInfo.data, isLogin: false })
+        }
+
+    } catch (e) {
+        yield put({ type: loginPro.LOGIN_FAILIURE, error: e })
+    }
+}
+
+function* takeLogin() {
+    yield takeLatest(loginPro.LOGIN_SUCCESS, getLoginInfo)
+}
+
+
+
 // yield all---同时执行多个saga
 // root saga
 export default function* rootSaga() {
-    yield all([watchGetPosts(), takeGet()])
+    yield all([watchGetPosts(), takeGet(), takeLogin()])
         // yield all([watchGetPosts(), helloSaga()])
         // yield watchGetPosts() //单独调用(只能单独调用一个saga)
         // yield takeGet()

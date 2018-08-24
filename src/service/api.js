@@ -1,4 +1,4 @@
-import { instance } from './apiConfig';
+import { instance, loginUrl } from './apiConfig';
 
 export const visitCount = (data) => {
     return instance.post('/appsetting/activityVisit', data)
@@ -20,3 +20,7 @@ export const commingSoon = () => {
 export const searchBook = (bookName) => {
     return instance.get('/v2/book/search?q=' + bookName)
 };
+
+export const login = (data) => {
+    return loginUrl.post('/app/login', data)
+}

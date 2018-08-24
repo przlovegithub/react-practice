@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseUrl } from './env'; //此处引入是判断是在开发环境还是生产环境
-
+import Qs from 'qs'
 // 全局默认配置
 // 授权认证
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
@@ -12,7 +12,8 @@ import { baseUrl } from './env'; //此处引入是判断是在开发环境还是
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 // 在向服务器发送前，修改请求数据(只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法)
-axios.defaults.transformRequest = [(data) => { return JSON.stringify(data) }]
+// 采用Qs的方式是为了用于application/x-www-form-urlencoded
+axios.defaults.transformRequest = [(data) => { return Qs.stringify(data) }]
 
 
 // 在传递给 then/catch 前，允许修改响应数据
@@ -31,16 +32,20 @@ axios.defaults.timeout = 40000;
 // 拦截器的说明
 // 1、interceptor必须在请求前设置才有效。
 // 2、直接为axios全局对象创建interceptor， 会导致全局的axios发出的请求或接收的响应都会被拦截到， 所以应该使用axios.create() 来创建单独的axios实例。
-
-// 创建axios实例
+let loginUrl = axios.create({
+        baseURL: 'http://appfwb.faw-mazda.com/',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        withCredentials: true,
+    })
+    // 创建axios实例
 let instance = axios.create({
     baseURL: baseUrl,
     headers: { 'Content-Type': 'application/json' },
     timeout: 10000,
     withCredentials: true,
-    // transformRequest: [(data) => {//可在axios实例中设置，也可在拦截器中设置
-    //     return JSON.stringify(data)
-    // }]
+    transformRequest: [(data) => { //可在axios实例中设置，也可在拦截器中设置
+        return JSON.stringify(data) //用于application/json
+    }]
 })
 
 
@@ -79,4 +84,4 @@ instance.interceptors.response.use(function(response) {
 
 
 
-export { instance };
+export { instance, loginUrl };
