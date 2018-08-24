@@ -27,7 +27,10 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
-
+// alias
+function resolve(dir) {
+    return path.join(__dirname, '..', dir)
+}
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
@@ -92,6 +95,7 @@ module.exports = {
             // Support React Native Web
             // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
             'react-native': 'react-native-web',
+            '@': resolve('src')
         },
         plugins: [
             // Prevents users from importing files from outside of src/ (or node_modules/).
