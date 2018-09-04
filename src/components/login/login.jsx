@@ -42,27 +42,22 @@ class Login extends React.Component {
     }
   };
   componentWillReceiveProps(nextProps) {
-    setTimeout(() => {
-      if (Object.keys(this.props.loginInfo).length > 0) {
-        if (this.props.loginInfo.result.code === 10000) {
-          // message.info("登录成功!");
-
-          sessionStorage.setItem(
-            "userinfo",
-            JSON.stringify(this.props.loginInfo.data[0])
-          );
-          setTimeout(() => {
-            let RedirectUrl = this.props.location.state
-              ? this.props.location.state.from.pathname
-              : "/";
-            console.log(RedirectUrl);
-            this.props.history.push(RedirectUrl);
-          }, 200);
-        } else {
-          // message.info("用户名或密码不对!");
-        }
+    if (Object.keys(nextProps.loginInfo).length > 0) {
+      if (nextProps.loginInfo.result.code === 10000) {
+        sessionStorage.setItem(
+          "userinfo",
+          JSON.stringify(nextProps.loginInfo.data[0])
+        );
+        setTimeout(() => {
+          let RedirectUrl = nextProps.location.state
+            ? nextProps.location.state.from.pathname
+            : "/";
+          console.log(RedirectUrl);
+          nextProps.history.push(RedirectUrl);
+        }, 200);
+      } else {
       }
-    }, 200);
+    }
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (
