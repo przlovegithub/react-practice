@@ -73,6 +73,7 @@
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
     "clean-webpack-plugin": "^0.1.19",
+    "image-webpack-loader": "^4.3.1",
     "node-sass": "^4.9.0",
     "react-hot-loader": "^4.3.0",
     "sass-loader": "^7.0.2"

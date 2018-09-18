@@ -143,12 +143,15 @@ module.exports = {
                     // assets smaller than specified size as data URLs to avoid requests.
                     {
                         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-                        loader: require.resolve('url-loader'),
-                        options: {
-                            limit: 10000,
-                            // name: 'static/media/[name].[hash:8].[ext]',
-                            name: `static/media/[name].${timeStamp}.[ext]`,
-                        },
+                        // loader: require.resolve('url-loader'),
+                        // options: {
+                        //     limit: 10000,
+                        //     // name: 'static/media/[name].[hash:8].[ext]',
+                        //     name: `static/media/[name].${timeStamp}.[ext]`,
+                        // },
+                        loader: [require.resolve('url-loader') + `?limit=10000&name=static/media/[name].${timeStamp}.[ext]`,
+                            'image-webpack-loader'
+                        ]
                     },
                     // Process JS with Babel.
                     {
