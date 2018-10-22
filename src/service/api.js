@@ -1,5 +1,5 @@
 import { instance, loginUrl } from './apiConfig';
-
+// import fetch from './fetch'
 export const visitCount = (data) => {
     return instance.post('/appsetting/activityVisit', data)
 };
@@ -22,5 +22,8 @@ export const searchBook = (bookName) => {
 };
 
 export const login = (data) => {
-    return loginUrl.post('/app/login', data)
-}
+        return loginUrl.post('/app/login', data)
+    }
+    // export const login = (data) => {//通过fetch方式
+    //     return fetch('/app/login', data, 'POST', 'application/x-www-form-urlencoded')
+    // };
