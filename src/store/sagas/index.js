@@ -1,5 +1,4 @@
-import { delay } from 'redux-saga';
-import { takeEvery, takeLatest, call, put, all } from 'redux-saga/effects';
+import { delay, takeEvery, takeLatest, call, put, all, fork } from 'redux-saga/effects';
 import * as pro from '../select/action-type';
 import * as loginPro from '../login/action-types';
 import { commingSoon, searchBook, login } from '../../service/api';
@@ -59,6 +58,7 @@ function* takeGet() {
 
 // Login
 function* getLoginInfo(action) {
+    console.log('Login', action)
     try {
         const userInfo = yield call(login, action.param);
         if (userInfo.data.result.code === 10000) {
@@ -81,9 +81,13 @@ function* takeLogin() {
 // yield all---同时执行多个saga
 // root saga
 export default function* rootSaga() {
-    yield all([watchGetPosts(), takeGet(), takeLogin()])
+    // yield all([watchGetPosts(), takeGet(), takeLogin()])
+    yield all([fork(watchGetPosts), fork(takeGet), fork(takeLogin)])
         // yield all([watchGetPosts(), helloSaga()])
         // yield watchGetPosts() //单独调用(只能单独调用一个saga)
         // yield takeGet()
         // yield helloSaga()
 }
+
+// 官方：https://redux-saga-in-chinese.js.org/docs/api/
+// 案例：https://blog.csdn.net/liwusen/article/details/80980987

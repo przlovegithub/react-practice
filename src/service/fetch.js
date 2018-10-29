@@ -61,7 +61,7 @@ export default async(url = '', data = {}, type = 'GET', contentType = 'applicati
             if (window.XMLHttpRequest) {
                 requestObj = new XMLHttpRequest()
             } else {
-                // requestObj = new ActiveXObject('Microsoft.XMLHTTP')
+                requestObj = new ActiveXObject('Microsoft.XMLHTTP')
             }
             let dataStr = '';
             if (type === 'POST') {
