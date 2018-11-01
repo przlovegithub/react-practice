@@ -65,10 +65,16 @@ class Parent extends React.Component {
     });
     console.log(msg);
   }
+  clickChildEvent = () => {
+    this.refs.subComponent.clickChild();
+  };
   render() {
     // shouldComponentUpdate返回true时执行
     return (
       <div>
+        <div className="timer" onClick={this.clickChildEvent}>
+          父组件调用子组件的方法
+        </div>
         <div
           ref="content"
           className={this.state.child2parent ? "content" : "nocontent"}
@@ -103,7 +109,10 @@ class Parent extends React.Component {
         <Child2 child2parent={this.child2parent.bind(this)} />
         {/* 条件判断需要在{}大括号中进行，表达式嵌入在{}中，以便用来在{}中嵌入任何的javascript表达式 */}
         {this.state.count > 0 ? (
-          <div className="timer">定时器：{this.state.count}</div>
+          <div className="timer">
+            定时器：
+            {this.state.count}
+          </div>
         ) : (
           <div className="timer">定时器：定时器已清除</div>
         )}
